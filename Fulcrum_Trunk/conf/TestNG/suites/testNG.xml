@@ -1,0 +1,1 @@
+<suite name="Selenium Automation Suite-LAT Fulcrum Pre Prod-1.0"><listeners><listener class-name="com.proj.listener.TestsListenerAdapter"/></listeners><suite-files><suite-file path="./conf/TestNG/suites/TRANSMITTALS Suite.xml"/></suite-files></suite>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/AshotRelated/ashot-1.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/AutoIT/AutoIT_Utilities_3.0.jar"/>
+	<classpathentry kind="lib" path="lib/AutoIT/jacob.jar"/>
+	<classpathentry kind="lib" path="lib/Build/guice-3.0.jar"/>
+	<classpathentry kind="lib" path="lib/Build/reportng-1.1.4.jar"/>
+	<classpathentry kind="lib" path="lib/Build/saxon-8.7.jar"/>
+	<classpathentry kind="lib" path="lib/Build/saxon-dom-8.7.jar"/>
+	<classpathentry kind="lib" path="lib/Build/SaxonLiaison.jar"/>
+	<classpathentry kind="lib" path="lib/Build/velocity-dep-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/Logs related/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="lib/Mail related/mail.jar"/>
+	<classpathentry kind="lib" path="lib/mob/java-client-1.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/Oracle related/ojdbc6-11.2.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/poi related/dom4j-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/poi related/poi-3.12-beta1-20150228.jar"/>
+	<classpathentry kind="lib" path="lib/poi related/poi-ooxml-3.12-beta1-20150228.jar"/>
+	<classpathentry kind="lib" path="lib/poi related/poi-ooxml-schemas-3.12-beta1-20150228.jar"/>
+	<classpathentry kind="lib" path="lib/poi related/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/cglib-nodep-3.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/commons-exec-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/commons-lang3-3.5.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/cssparser-0.9.22.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/guava-21.0.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/htmlunit-2.26.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/htmlunit-core-js-2.26.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/htmlunit-driver-2.26.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/httpmime-4.5.3.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/jetty-io-9.4.1.v20170120.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/jetty-util-9.4.1.v20170120.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/jna-platform-4.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/neko-htmlunit-2.25.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/phantomjsdriver-1.4.0.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/sac-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/serializer-2.7.2.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/websocket-api-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/websocket-client-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/websocket-common-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/xalan-2.7.2.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/xercesImpl-2.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/lib/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/selenium-server-standalone-3.4.0.jar"/>
+	<classpathentry kind="lib" path="lib/SQL related/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="lib/TestNG related/testng-6.8.5.jar"/>
+	<classpathentry kind="lib" path="lib/Sel Related/SH-FRMWRK.jar" sourcepath="C:/LT Related/Automation/Selenium/SH Jars/SH-FRMWRK-SRC12.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

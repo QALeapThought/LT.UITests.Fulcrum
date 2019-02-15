@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TRANSMITTALS Suite">
+  
+  
+  <test name="FUL_Transmittals_ActionOverDue_New_ChangeNote">
+    <classes>
+      <class name="com.proj.suiteTRANSMITTALS.FUL_Transmittals_ActionOverDue_New_ChangeNote"/>
+    </classes>
+  </test> <!-- FUL_Transmittals_ActionOverDue_New_ChangeNote -->
+</suite> <!-- TRANSMITTALS Suite -->
