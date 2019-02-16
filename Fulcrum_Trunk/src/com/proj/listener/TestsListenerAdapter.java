@@ -75,7 +75,9 @@ public class TestsListenerAdapter implements ITestListener, ISuiteListener, IInv
 		TestBase.logsObj.log("================================================");
 		TestBase.logsObj.log("Completed executing of the test:- " + arg0.getName());
 		TestBase.logsObj.log("================================================");
-		Reporter.log("Completed executing test:- " + arg0.getName(), true);	
+		Reporter.log("Completed executing test:- " + arg0.getName(), true);
+		data_fetchRowNumber=0;
+		TestBase.testcaseName="";
 
 	}
 
