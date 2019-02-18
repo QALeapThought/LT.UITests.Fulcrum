@@ -1,7 +1,5 @@
 package com.proj.util;
 
-import java.awt.Dimension;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -111,7 +109,6 @@ public class Clicks extends TestBase{
 					element=ExplicitWaitUtil.waitForElementTobeActionable(driver, locatorType, objectLocator, Constants_TimeOuts.Element_clickable_TimeOut);
 					logsObj.log(testcasename+"-->"+objectLocator+" exists and ready for click... ");
 				} catch (Throwable e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
