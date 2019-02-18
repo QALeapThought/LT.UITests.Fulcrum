@@ -1,10 +1,6 @@
 package com.proj.suiteTRANSMITTALS.reusables;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.frw.Constants.Constants_FRMWRK;
 import com.frw.util.PageLoadWaitUtil;
@@ -12,7 +8,6 @@ import com.frw.util.WaitUtil;
 import com.proj.Constants.Constants;
 import com.proj.Constants.Constants_TimeOuts;
 import com.proj.Constants.Constants_Workflow;
-import com.proj.library.commonMethods;
 import com.proj.navigations.Navigations_Fulcrum;
 import com.proj.objectRepository.ObjRepository;
 import com.proj.suiteTRANSMITTALS.TestSuiteBase;
