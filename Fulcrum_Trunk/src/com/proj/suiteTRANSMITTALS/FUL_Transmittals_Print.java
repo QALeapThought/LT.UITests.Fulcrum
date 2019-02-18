@@ -2,16 +2,13 @@ package com.proj.suiteTRANSMITTALS;
 
 import java.util.Hashtable;
 
-import org.openqa.selenium.Alert;
 import org.testng.annotations.Test;
 
 import com.frw.Constants.Constants_FRMWRK;
-import com.frw.util.PopUpUtil;
 import com.frw.util.WaitUtil;
 import com.proj.Constants.Constants_TimeOuts;
 import com.proj.library.commonMethods;
 import com.proj.navigations.Navigations_Fulcrum;
-import com.proj.suiteTRANSMITTALS.pages.Transmittals_EntryPage;
 import com.proj.util.CustomExceptions;
 import com.proj.util.Dialogs;
 import com.proj.util.TestExecutionUtil;

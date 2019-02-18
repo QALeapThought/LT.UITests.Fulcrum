@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import com.frw.Constants.Constants_FRMWRK;
 import com.proj.Constants.Constants_ConfigProperties;
 import com.proj.Constants.Constants_Workflow;
-import com.proj.navigations.Navigations_Fulcrum;
 import com.proj.suiteTRANSMITTALS.pages.Transmittals_EntryPage;
 import com.proj.suiteTRANSMITTALS.workflows.Workflows;
 import com.proj.util.CustomExceptions;
@@ -29,8 +28,6 @@ public class FUL_Transmittals_ActionRequired_New_ChangeNote extends TestSuiteBas
 			) throws Throwable{
 		System.out.println("In test");
 
-
-
 		logsObj.log("******************************************************");		
 		logsObj.log("Executing the test case: "+testcaseName);
 
@@ -45,8 +42,6 @@ public class FUL_Transmittals_ActionRequired_New_ChangeNote extends TestSuiteBas
 			//************************************** LEVEL 1 *****************************************************************************
 			String workflow_Level1=workflow_l1+condition+workflow_end;		
 
-//			Transmittals_EntryPage.validateMailedDocumentSentFlag(driver_TRANS, refID, testcaseName, workflow_l1, data);
-			
 			transmittalData=Workflows.Level1_Initaite_Transmittal(driver_TRANS, Constants_ConfigProperties.testSiteName, workflow_Level1, data);
 			/*String rec="Shaik Ahamed";//John Kenndy Y.Com@@QASubsiteUser Gmail
 			data.put("To", rec);
