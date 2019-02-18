@@ -10,7 +10,6 @@ import com.proj.navigations.Navigations_Fulcrum;
 import com.proj.suiteTRANSMITTALS.TestSuiteBase;
 import com.proj.suiteTRANSMITTALS.reusables.TransmittalsGridUtil;
 import com.proj.util.CustomExceptions;
-import com.proj.utilFulcrum.WebTableUtil;
 
 public class MySentPage extends TestSuiteBase{
 	private static final String page="My Sent";
@@ -62,7 +61,7 @@ public class MySentPage extends TestSuiteBase{
 		Navigations_Fulcrum.Transmittals.navigateToMysent(driver,workflow);
 		boolean subjectDisplay=TransmittalsGridUtil.waitUntilSubjectDisplays(driver, refID, testcaseName, page, workflow, subject,"My Sent");
 		if(subjectDisplay==false)	{
-			CustomExceptions.Exit(testcaseName, "My Sent - Subject", "Subject "+subject+" is not listed after suffiecient wait..");
+			CustomExceptions.Exit(testcaseName, workflow+"My Sent - Subject", "Subject "+subject+" is not listed after suffiecient wait..");
 		}
 		TransmittalsGridUtil.searchSubjectAndCheck_TxComplete_Status(driver,page, workflow, subject, TxComplete_Status);
 		TransmittalsGridUtil.searchSubjectAndCheck_Status(driver,page, workflow, subject, status);
