@@ -148,8 +148,8 @@ public class Dialogs {
 		WindowElement button_OK=AutoIT_ActionsUtil.elementByName(handle, authwindowElement, "OK");
 		AutoIT_ActionsUtil.clickElement(handle, button_OK);	
 	}
-	
-public static String ViewDownloads(WebDriver driver,String notificationPageTitle,String download_dailogName,String filePath,String refid,String testcasename,String workflow) throws Exception{
+
+	public static String ViewDownloads(WebDriver driver,String notificationPageTitle,String download_dailogName,String filePath,String refid,String testcasename,String workflow) throws Exception{
 		String flag =Constants_FRMWRK.False;
 		try{
 			File file =new File(filePath);
@@ -161,26 +161,30 @@ public static String ViewDownloads(WebDriver driver,String notificationPageTitle
 			Thread.sleep(3000);*/
 			AutoITUtil.loadJocobDLL();
 			WindowHandler handle=AutoIT_ActionsUtil.getHandler();
-			
-			
+
+
 			Thread.sleep(5000);
-			//String notificationPageTitle="Mail - My Inbox - Internet Explorer";
-			boolean yes=handle.isWindowPresent(notificationPageTitle);
+			handle.isWindowPresent(notificationPageTitle);
 			WindowElement windowElementNotification=AutoIT_ActionsUtil.getDialog(handle,notificationPageTitle);
-			
-			boolean isDisplayed=false;
-			
+
+			boolean isNotificationBarDisplayed=false;
+			int counter=1;
+
 			do{
 				WindowElement windowElementNotificationopen=AutoIT_ActionsUtil.elementByName(handle, windowElementNotification, "Open");
 				if(AutoIT_ActionsUtil.isElementDisplayed(handle, windowElementNotificationopen)==true){
-					isDisplayed=true;
+					isNotificationBarDisplayed=true;
 					break;
 				}
 				Thread.sleep(5000);
-			}while (isDisplayed==false);
-			
-			
-			
+				counter=counter+1;
+			}while (isNotificationBarDisplayed==false && counter<=40);
+
+			if(isNotificationBarDisplayed==false){
+				Reporting.logStep(driver, refid, testcasename, workflow+"-Download File", "Notification Bar is not displayed for the file"+filePath, Constants_FRMWRK.Fail);
+				return flag;
+			}
+
 			AutoITUtil.openDownloadsWindow(driver);
 			Thread.sleep(3000);
 
@@ -193,7 +197,7 @@ public static String ViewDownloads(WebDriver driver,String notificationPageTitle
 			AutoIT_ActionsUtil.clickElement(handle, elements.get(1));
 			AutoITUtil.robo_click_saveAs();
 
-			
+
 
 			//*********************** Save As Dialog ***********************************************************
 			WindowElement saveAsDailog_element=AutoIT_ActionsUtil.elementByName(handle, windowElement, "Save As");		Thread.sleep(1000);
@@ -205,9 +209,30 @@ public static String ViewDownloads(WebDriver driver,String notificationPageTitle
 
 			WindowElement button_save=AutoIT_ActionsUtil.elementByName(handle, saveAsDailog_element, "Save");
 			AutoIT_ActionsUtil.clickElement(handle, button_save);
+
+			boolean isSucessToDownloadCompleteFile=false;
+			counter=1;
+
+			do{
+				button_save=AutoIT_ActionsUtil.elementByName(handle, saveAsDailog_element, "Save");
+				if(AutoIT_ActionsUtil.isElementDisplayed(handle, saveAsDailog_element)==false){
+					isSucessToDownloadCompleteFile=false;
+					break;
+				}
+				Thread.sleep(5000);
+				counter=counter+1;
+			}while (isSucessToDownloadCompleteFile==true && counter<=40);			
+
+
 			WindowElement button_close=AutoIT_ActionsUtil.elementByName(handle, windowElement, "Close");
 			AutoIT_ActionsUtil.clickElement(handle, button_close);
-			Thread.sleep(3000);			
+
+			if(isSucessToDownloadCompleteFile==true){
+				Reporting.logStep(driver, refid, testcasename, workflow+"-Download File", "Notification Bar is displayed but could not able to download file "+filePath, Constants_FRMWRK.Fail);
+				return flag;
+			}
+
+			Thread.sleep(3000);						
 			Reporting.logStep(driver, refid, testcasename, workflow+"-Download File", "Sucessfully downloaded the file at "+filePath, Constants_FRMWRK.Pass);
 			flag=Constants_FRMWRK.True;
 		}catch (Throwable t){
@@ -217,50 +242,50 @@ public static String ViewDownloads(WebDriver driver,String notificationPageTitle
 		return flag;
 	}
 
-public static String checkDefaultDialog(WebDriver driver,String browser,String title,String dailogName,String refid,String testcasename,String workflow,String buttonToClick) throws Exception{
-	String flag =Constants_FRMWRK.False;
-	try{
-		
-		WindowElement windowElement;
-		WindowElement dialogwindowElement = null;
-		AutoITUtil.loadJocobDLL();
-		Thread.sleep(3000);
+	public static String checkDefaultDialog(WebDriver driver,String browser,String title,String dailogName,String refid,String testcasename,String workflow,String buttonToClick) throws Exception{
+		String flag =Constants_FRMWRK.False;
+		try{
 
-		WindowHandler handle=AutoIT_ActionsUtil.getHandler();
+			WindowElement windowElement;
+			WindowElement dialogwindowElement = null;
+			AutoITUtil.loadJocobDLL();
+			Thread.sleep(3000);
 
-		if(browser.equalsIgnoreCase("ie")){
-			if(commonMethods.getBrowserVersion(driver).contains("11")){
-				// windowElement=AutoIT_ActionsUtil.getDialog(handle,"WebDriver - Internet Explorer");
-				windowElement=AutoIT_ActionsUtil.getDialog(handle,title+" - Internet Explorer");
-			}else{
-				//windowElement=AutoIT_ActionsUtil.getDialog(handle,"WebDriver - Windows Internet Explorer");
-				windowElement=AutoIT_ActionsUtil.getDialog(handle,title+" - Windows Internet Explorer");
-			}			
-			dialogwindowElement=AutoIT_ActionsUtil.elementByName(handle, windowElement, dailogName);
-			
+			WindowHandler handle=AutoIT_ActionsUtil.getHandler();
+
+			if(browser.equalsIgnoreCase("ie")){
+				if(commonMethods.getBrowserVersion(driver).contains("11")){
+					// windowElement=AutoIT_ActionsUtil.getDialog(handle,"WebDriver - Internet Explorer");
+					windowElement=AutoIT_ActionsUtil.getDialog(handle,title+" - Internet Explorer");
+				}else{
+					//windowElement=AutoIT_ActionsUtil.getDialog(handle,"WebDriver - Windows Internet Explorer");
+					windowElement=AutoIT_ActionsUtil.getDialog(handle,title+" - Windows Internet Explorer");
+				}			
+				dialogwindowElement=AutoIT_ActionsUtil.elementByName(handle, windowElement, dailogName);
+
+			}
+
+
+			if(buttonToClick.equalsIgnoreCase("Cancel")){
+				WindowElement button_toClick=AutoIT_ActionsUtil.elementByName(handle, dialogwindowElement, "Cancel");
+				AutoIT_ActionsUtil.clickElement(handle, button_toClick);
+				Reporting.logStep(driver, refid, testcasename, workflow+"-Check Default Dialog-"+dailogName, " Dialog exists and Click Cancel button ", Constants_FRMWRK.Pass);
+			}
+			else if(buttonToClick.equalsIgnoreCase("Apply")){
+				WindowElement button_toClick=AutoIT_ActionsUtil.elementByName(handle, dialogwindowElement, "Apply");
+				AutoIT_ActionsUtil.clickElement(handle, button_toClick);
+				Reporting.logStep(driver, refid, testcasename, workflow+"-Check Default Dialog-"+dailogName, " Dialog exists and Click Apply button ", Constants_FRMWRK.Pass);
+			}
+			else if(buttonToClick.equalsIgnoreCase("Print")){
+				WindowElement button_toClick=AutoIT_ActionsUtil.elementByName(handle, dialogwindowElement, "Print");
+				AutoIT_ActionsUtil.clickElement(handle, button_toClick);
+				Reporting.logStep(driver, refid, testcasename, workflow+"-Check Default Dialog-"+dailogName, " Dialog exists and Click Print button ", Constants_FRMWRK.Pass);
+			}
+			flag =Constants_FRMWRK.True;
+		}catch (Throwable t){
+			t.printStackTrace();
+			Reporting.logStep(driver, refid, testcasename,workflow+"-Check Default Dialog",   "Unable to Locate the dialog -"+dailogName+" due to -->"+commonMethods.getStackTrace(t), Constants_FRMWRK.Fail);
 		}
-		
-		
-		if(buttonToClick.equalsIgnoreCase("Cancel")){
-			WindowElement button_toClick=AutoIT_ActionsUtil.elementByName(handle, dialogwindowElement, "Cancel");
-			AutoIT_ActionsUtil.clickElement(handle, button_toClick);
-			Reporting.logStep(driver, refid, testcasename, workflow+"-Check Default Dialog-"+dailogName, " Dialog exists and Click Cancel button ", Constants_FRMWRK.Pass);
-		}
-		else if(buttonToClick.equalsIgnoreCase("Apply")){
-			WindowElement button_toClick=AutoIT_ActionsUtil.elementByName(handle, dialogwindowElement, "Apply");
-			AutoIT_ActionsUtil.clickElement(handle, button_toClick);
-			Reporting.logStep(driver, refid, testcasename, workflow+"-Check Default Dialog-"+dailogName, " Dialog exists and Click Apply button ", Constants_FRMWRK.Pass);
-		}
-		else if(buttonToClick.equalsIgnoreCase("Print")){
-			WindowElement button_toClick=AutoIT_ActionsUtil.elementByName(handle, dialogwindowElement, "Print");
-			AutoIT_ActionsUtil.clickElement(handle, button_toClick);
-			Reporting.logStep(driver, refid, testcasename, workflow+"-Check Default Dialog-"+dailogName, " Dialog exists and Click Print button ", Constants_FRMWRK.Pass);
-		}
-		flag =Constants_FRMWRK.True;
-	}catch (Throwable t){
-		t.printStackTrace();
-		Reporting.logStep(driver, refid, testcasename,workflow+"-Check Default Dialog",   "Unable to Locate the dialog -"+dailogName+" due to -->"+commonMethods.getStackTrace(t), Constants_FRMWRK.Fail);
+		return flag;
 	}
-	return flag;
-}
 }
