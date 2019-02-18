@@ -14,7 +14,6 @@ import com.proj.library.commonMethods;
 import com.proj.navigations.Navigations_Fulcrum;
 import com.proj.suiteTRANSMITTALS.TestSuiteBase;
 import com.proj.suiteTRANSMITTALS.reusables.TransmittalsGridUtil;
-import com.proj.utilFulcrum.ApplicationMethods;
 import com.report.reporter.Reporting;
 
 public class MyInboxAndActionRequiredPage_Fulcrum extends TestSuiteBase{

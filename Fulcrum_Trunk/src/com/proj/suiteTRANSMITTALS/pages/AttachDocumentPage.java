@@ -13,7 +13,6 @@ import com.proj.library.ElementPresence;
 import com.proj.library.KeyMethods;
 import com.proj.library.commonMethods;
 import com.proj.utilFulcrum.ApplicationMethods;
-import com.proj.utilFulcrum.WebTableUtil;
 import com.proj.utilFulcrum.WebTable_Generic;
 
 public class AttachDocumentPage extends Transmittals_EntryPage{
