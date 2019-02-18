@@ -208,16 +208,7 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 		res=KeyMethods.f_performAction(driver, refID, testcasename, workFlow, step, objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, input);
 
 	}
-	/*public static void clickSmartFolder(WebDriver driver,String workflow,String refID,String testcasename,String page,Hashtable<String,String>data) throws Throwable{
-		if(!data.get("AttachDocuments-Folder").equalsIgnoreCase("")){
-			//WebTableUtil.searchforDataInsearchColumnAndClickInactionableLinkColumn(driver, testcasename, workflow+" "+page+" - Select a Smart Folder", data.get("AttachDocuments"),data.get("AttachDocuments-Folder") ,"DESCENDANT_LINK_1", data.get("AttachDocuments-Folder"), 4, 2);
-			WebTable_Generic.searchforDataInsearchColumnAndClickInactionableLinkColumn(driver,testcasename,workflow+" "+page+" - Select a Smart Folder",Constants.container_property_summary, data.get("AttachDocuments"),"equals",data.get("AttachDocuments-Folder"),Constants.Webtable_actionColumnType_DESCENDANT_LINK_1,data.get("AttachDocuments-Folder"),Constants_Workflow.Fulcrum_View_Column_Title,Constants_Workflow.Fulcrum_View_Column_Name);
-			//LoginLib.LoginGenerics.checkLandingPageTitle(driver);	
-			PageLoadWaitUtil.waitForPageLoad(driver, Constants_TimeOuts.Page_Load_TimeOut);
-
-
-		}
-	}	*/
+	
 
 	public static String checkTransmittalHelpEnabled(WebDriver driver,String refid,String testcasename,String workflow) throws Throwable{
 		ApplicationMethods.switchToLatestDLGframe(driver, testcasename);
@@ -469,9 +460,6 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 		}
 
 
-
-
-		//Transmittals_EntryPage.attachdocument(driver, refID, testcasename, workFlow, data);
 		AttachDocumentPage.NewMail.attachMailDocuments(driver, refID, testcasename, workFlow, data);
 
 		clickSend(driver, workFlow,testcasename);
@@ -520,15 +508,7 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 			res=KeyMethods.f_performAction(driver, refID, testcaseName, workFlow, "Tramsmittals-Comments", objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, action);
 		}			
 
-		/*else if (appName.equals(Constants.App_Fluid)){
-			if(data.get(Constants_Workflow.FluidTX_WorkFlow_Condition).equalsIgnoreCase(Constants_Workflow.FluidTX_WorkFlow_IssuedForReview)){
-				res=KeyMethods.f_performAction(driver, refID, testcaseName, workFlow, "Tramsmittals-Comments", objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, action);	
-			}
-			else if(data.get(Constants_Workflow.FluidTX_WorkFlow_Condition).equalsIgnoreCase(Constants_Workflow.FluidTX_WorkFlow_IssuedForApproval)){
-				if(action.equalsIgnoreCase("APPROVED") || action.equalsIgnoreCase("REJECTED")){
-					res=KeyMethods.f_performAction(driver, refID, testcaseName, workFlow, "Tramsmittals-Approve/Reject", objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, action);
-				}
-			}*/
+		
 		clickSubmit(driver, workFlow);
 		if(data.get("To").contains(Constants.delimiter_data)&& action.equalsIgnoreCase("Rejected")){
 			actionStatusData=Transmittals_EntryPage.updateRecipientsActionStatusToComplete(data.get("To"));
@@ -553,11 +533,8 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 		clickForward(driver, workFlow);
 		ApplicationMethods.waitForOverlayToDisappear(driver);
 		Transmittals_EntryPage.switchToTramsmittalEditFrame(driver, refID, testcasename, workFlow);
-		System.out.println("asas");
-		//WaitUtil.pause(Constants_TimeOuts.Save_TimeOut);	
 		transmittalData.put("Sender", transmittalData.get("To"));
 		res=enterTo(driver,testcasename, workFlow, data.get("ForwardTo"));
-		//returnData.put("Tramsmittals-ForwardReplyTo", res);
 		transmittalData.put("To", res);
 
 		String step_name="Mail Type";
@@ -698,219 +675,7 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 
 	}
 
-	/*public static void nottouse_attachdocument(WebDriver driver,String refid,String testcasename,String workflow,Hashtable<String,String>data) throws Throwable{
-		//String condition="";
-		//String condition_workFlow="";
-		clickEditTab(driver, refid, testcasename, workflow);
 
-		if(data.get(Constants_Workflow.Fulcrum_WorkFlow_Data_RESREQ_Condition).equalsIgnoreCase(Constants_Workflow.Fulcrum_WorkFlow_REVIEW) && !data.get("Review Sheet").isEmpty()){
-			res=KeyMethods.f_performAction(driver, refid, testcasename, workflow, "Tramsmittals-Attach Review Sheet", objects_locatorType_Transmittals_toolbar, objects_objectType_Transmittals_toolbar, objects_objectLocator_Transmittals_toolbar, input);
-			ApplicationMethods.waitForOverlayToDisappear(driver);
-			ApplicationMethods.switchToLatestDLGframe(driver, testcasename);
-			String fileName=Constants.DataFileLocation_Transmittal+data.get("Review Sheet");
-			res=KeyMethods.f_performAction(driver, refid, testcasename, workflow, "Tramsmittals-Browse", objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, fileName);
-			if(!res.equalsIgnoreCase(Constants_FRMWRK.Fail)){
-				res=KeyMethods.f_performAction(driver, refid, testcasename, workflow, "Tramsmittals-Browse-OK", objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, input);
-				ApplicationMethods.switchToLatestDLGframe(driver, testcasename);
-				String locator=objects_objectLocator_Transmittals.get("Tramsmittals-Attached Review Document Files").replaceAll("docName", data.get("Review Sheet"));
-				objects_objectLocator_Transmittals.put("Tramsmittals-Attached Review Document Files", locator);
-				res=KeyMethods.f_fetchElementDetails(driver, refid, testcasename, workflow, "Tramsmittals-Attached Review Document Files", objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, data.get("Review Sheet"));
-
-			}
-
-		}
-		//New logic
-
-		MailAttachDocumentUtil.attachDocument_logic(driver, refid, testcasename, workflow, data, "Attach");
-		MailAttachDocumentUtil.attachDocument_logic(driver, refid, testcasename, workflow, data, "Support");
-
-
-		String key_data_attachDoc_documentRegister="AttachDocuments";
-		String key_button_attach="Tramsmittals-Attach";
-		String key_data_attachDoc_attachDocumentNames="AttachDocumentName";
-		String page ="Attach Document";
-		if(!data.get("AttachDocuments").isEmpty()){		
-			if(!data.get("AttachDocuments").isEmpty()){
-
-				String key_step_attachDoc="Tramsmittals-Attach Document";
-				String key_step_attachDocRegister="Tramsmittals-Document Registry";
-				MailAttachDocumentUtil.clickAttachDocumentRibbonIcon(driver, refid, testcasename, workflow,"Attach");
-
-				res=KeyMethods.f_performAction(driver, refid, testcasename, workflow,key_step_attachDoc , objects_locatorType_Transmittals_toolbar, objects_objectType_Transmittals_toolbar, objects_objectLocator_Transmittals_toolbar, input);
-				ApplicationMethods.waitForOverlayToDisappear(driver);
-				ApplicationMethods.switchToLatestDLGframe(driver, testcasename);
-
-				String step_verify="Tramsmittals-Verify Attached File";
-				String step_locator_default=objects_objectLocator_Transmittals.get(step_verify);
-
-				if(!data.get(key_data_attachDoc_attachDocumentNames).contains(Constants.delimiter_data)){
-					String typeofDocument = "Attach";
-					MailAttachDocumentUtil.selectDocumentRegisterAndSmartFolder(driver, refid, testcasename, workflow, data, page, typeofDocument);
-					MailAttachDocumentUtil.selectADocument(driver, refid, testcasename, workflow, data, page, typeofDocument,data.get(key_data_attachDoc_attachDocumentNames));
-					res=KeyMethods.f_performAction(driver, refid, testcasename, workflow,key_step_attachDocRegister , objects_locatorType_Transmittals_toolbar, objects_objectType_Transmittals_toolbar, objects_objectLocator_Transmittals_toolbar, data.get(key_data_attachDoc_documentRegister));
-					switchToDocumentsListFrame(driver);					
-					//Smart folder
-					clickSmartFolder(driver, workflow, refid, testcasename, page, data);
-
-
-
-					boolean fileAttached=false;
-					int counter=0;
-					//WebTableUtil.searchforDataInsearchColumnAndClickInactionableLinkColumn(driver, testcaseName, workflow+" "+page+" - Select a Document", ObjRepository.container_documentRegister, data.get("AttachDocumentName"),"Text", data.get("AttachDocumentName"), 3, 2);
-					while(counter<=3 && fileAttached==false){
-						String[] docname=commonMethods.splitString(data.get(key_data_attachDoc_attachDocumentNames), "\\.");
-						WebTableUtil.searchforDataInsearchColumnAndClickInactionableLinkColumn(driver, testcasename, workflow+" "+page+" - Select a Attach Document", data.get(key_data_attachDoc_documentRegister),docname[0] ,"Text", docname[0], 2, 3);
-						//fileAttached=ElementPresence.isElementDisplayed(driver, Constants_FRMWRK.FindElementByXPATH, objects_objectLocator_Transmittals_toolbar.get("Tramsmittals-Attached Document Files-Remove"),Constants_TimeOuts.sync_element_load);
-
-						String step_locator=objects_objectLocator_Transmittals.get(step_verify);
-						step_locator=commonMethods.replaceString("docName", step_locator,  docname[0]);
-						objects_objectLocator_Transmittals.put(step_verify, step_locator);
-
-						fileAttached=ElementPresence.isElementDisplayed(driver, Constants_FRMWRK.FindElementByXPATH, objects_objectLocator_Transmittals.get(step_locator),Constants_TimeOuts.sync_element_load);
-						counter=counter+1;
-						if(counter==3){
-							break;
-						}
-						objects_objectLocator_Transmittals.put(step_verify, step_locator_default);
-					}
-
-				}else{
-					String[] getattachDocuments=commonMethods.splitString(data.get(key_data_attachDoc_attachDocumentNames), Constants.delimiter_data);
-
-					for (int doc=0;doc<getattachDocuments.length;doc++){
-							String typeofDocument = "Attach";
-							MailAttachDocumentUtil.selectDocumentRegisterAndSmartFolder(driver, refid, testcasename, workflow, data, page, typeofDocument);
-							MailAttachDocumentUtil.selectADocument(driver, refid, testcasename, workflow, data, page, typeofDocument, getattachDocuments[doc]);
-					}
-
-				}
-				MailAttachDocumentUtil.clickAttach(driver, refid, testcasename, workflow);
-			}	
-			String typeofDocument = "Attach";
-			MailAttachDocumentUtil.verify_AttachedDocuments_NewMail(driver, refid, testcasename, workflow, data, typeofDocument);
-
-
-			//verify after attach
-			String key_step_attachedDoc="Tramsmittals-Attached Transmittal Files";
-			String locator_default=objects_objectLocator_Transmittals.get(key_step_attachedDoc);
-			ApplicationMethods.switchToLatestDLGframe(driver, testcasename);
-			if(!data.get(key_data_attachDoc_attachDocumentNames).contains(Constants.delimiter_data)){	
-				String[] docname=commonMethods.splitString(data.get(key_data_attachDoc_attachDocumentNames), "\\.");
-				String locator=objects_objectLocator_Transmittals.get(key_step_attachedDoc).replaceAll("docName", docname[0]);
-				objects_objectLocator_Transmittals.put(key_step_attachedDoc, locator);
-				KeyMethods.f_fetchElementDetails(driver, refid, testcasename, workflow, "Tramsmittals-Attached Transmittal Files", objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, docname[0]);
-				objects_objectLocator_Transmittals.put(key_step_attachedDoc, locator_default);
-
-			}else{
-				String[] getattachDocuments=commonMethods.splitString(data.get(key_data_attachDoc_attachDocumentNames), Constants.delimiter_data);
-				String default_locator=objects_objectLocator_Transmittals.get(key_step_attachedDoc);
-
-				for (int doc=0;doc<getattachDocuments.length;doc++){
-					String[] docname=commonMethods.splitString(getattachDocuments[doc], "\\.");					
-					String locator=objects_objectLocator_Transmittals.get(key_step_attachedDoc).replaceAll("docName",docname[0]);
-					objects_objectLocator_Transmittals.put(key_step_attachedDoc, locator);
-					try{
-						KeyMethods.f_fetchElementDetails(driver, refid, testcasename, workflow, key_step_attachedDoc, objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, docname[0]);
-
-					}catch (Throwable t){}
-					objects_objectLocator_Transmittals.put(key_step_attachedDoc, default_locator);
-				}
-
-			}
-
-		}
-
-
-		//
-		String key_data_supportDoc_documentRegister="AttachSupportDocuments";
-		page ="Attach Support Document";		
-		if(!data.get(key_data_supportDoc_documentRegister).isEmpty()){
-			String key_step_supportDoc="Tramsmittals-Attach Support Document";
-			String key_step_supportDocRegister="Tramsmittals-Document Registry";
-			String key_data_supportDoc_attachDocumentNames="AttachSupportDocumentName";
-
-			res=KeyMethods.f_performAction(driver, refid, testcasename, workflow,key_step_supportDoc , objects_locatorType_Transmittals_toolbar, objects_objectType_Transmittals_toolbar, objects_objectLocator_Transmittals_toolbar, input);
-			ApplicationMethods.waitForOverlayToDisappear(driver);
-			ApplicationMethods.switchToLatestDLGframe(driver, testcasename);	
-
-			res=KeyMethods.f_performAction(driver, refid, testcasename, workflow, key_step_supportDocRegister, objects_locatorType_Transmittals_toolbar, objects_objectType_Transmittals_toolbar, objects_objectLocator_Transmittals_toolbar, data.get(key_data_supportDoc_documentRegister));
-			switchToDocumentsListFrame(driver);
-
-
-			//Attach Support docs
-			clickSmartFolder(driver, workflow, refid, testcasename, page, data);
-
-			if(!data.get(key_data_supportDoc_attachDocumentNames).contains(Constants.delimiter_data)){
-				boolean fileAttached=false;
-				int counter=0;
-				while(counter<=3 && fileAttached==false){
-					String[] docname=commonMethods.splitString(data.get(key_data_supportDoc_attachDocumentNames), "\\.");
-					WebTableUtil.searchforDataInsearchColumnAndClickInactionableLinkColumn(driver, testcaseName, workflow+" "+page+" - Select a Support Document", data.get(key_data_supportDoc_documentRegister), docname[0],"Text",docname[0] , 2, 3);
-					fileAttached=ElementPresence.isElementDisplayed(driver, Constants_FRMWRK.FindElementByXPATH, objects_objectLocator_Transmittals_toolbar.get("Tramsmittals-Attached Document Files-Remove"),Constants_TimeOuts.sync_element_load);
-					counter=counter+1;
-					if(counter==3){
-						break;
-					}
-				}
-			}
-			else{
-				String[] getattachDocuments=commonMethods.splitString(data.get(key_data_supportDoc_attachDocumentNames), Constants.delimiter_data);
-
-				for (int doc=0;doc<getattachDocuments.length;doc++){
-
-					boolean fileAttached=false;
-					int counter=0;
-
-					while(counter<=3 && fileAttached==false){
-						String[] docname=commonMethods.splitString(getattachDocuments[doc], "\\.");
-						WebTableUtil.searchforDataInsearchColumnAndClickInactionableLinkColumn(driver, testcaseName, workflow+" "+page+" - Select a Document", data.get(key_data_supportDoc_documentRegister), docname[0],"Text", docname[0], 2, 3);
-						fileAttached=ElementPresence.isElementDisplayed(driver, Constants_FRMWRK.FindElementByXPATH, objects_objectLocator_Transmittals_toolbar.get("Tramsmittals-Attached Document Files-Remove"),Constants_TimeOuts.sync_element_load);
-						counter=counter+1;
-						if(counter==3){
-							break;
-						}
-					}
-
-				}
-
-			}
-
-
-			res=KeyMethods.f_performAction(driver, refid, testcasename, workflow, key_button_attach, objects_locatorType_Transmittals_toolbar, objects_objectType_Transmittals_toolbar, objects_objectLocator_Transmittals_toolbar, input);
-			ApplicationMethods.waitForOverlayToDisappear(driver);			
-			String key_step_attchedsupportDoc="Tramsmittals-Attached Support Document Files";
-			ApplicationMethods.switchToLatestDLGframe(driver, testcasename);
-			//Attach Support docs-verify after attach	
-			if(!data.get(key_data_supportDoc_attachDocumentNames).contains(Constants.delimiter_data)){
-				String[] docname=commonMethods.splitString(data.get(key_data_supportDoc_attachDocumentNames), "\\.");
-
-				String locator_default=objects_objectLocator_Transmittals.get(key_step_attchedsupportDoc);
-				String locator=objects_objectLocator_Transmittals.get(key_step_attchedsupportDoc).replaceAll("docName", docname[0]);
-				objects_objectLocator_Transmittals.put(key_step_attchedsupportDoc, locator);
-				KeyMethods.f_fetchElementDetails(driver, refid, testcasename, workflow, key_step_attchedsupportDoc, objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, docname[0]);
-				objects_objectLocator_Transmittals.put(key_step_attchedsupportDoc, locator_default);
-			}else{
-
-				String[] getattachDocuments=commonMethods.splitString(data.get(key_data_supportDoc_attachDocumentNames), Constants.delimiter_data);
-				String default_locator=objects_objectLocator_Transmittals.get(key_step_attchedsupportDoc);
-
-				for (int doc=0;doc<getattachDocuments.length;doc++){
-					String[] docname=commonMethods.splitString(getattachDocuments[doc], "\\.");					
-					String locator=objects_objectLocator_Transmittals.get(key_step_attchedsupportDoc).replaceAll("docName",docname[0]);
-					objects_objectLocator_Transmittals.put(key_step_attchedsupportDoc, locator);
-
-					KeyMethods.f_fetchElementDetails(driver, refid, testcasename, workflow, key_step_attchedsupportDoc, objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, docname[0]);
-					objects_objectLocator_Transmittals.put(key_step_attchedsupportDoc, default_locator);
-				}				
-
-			}
-			String locator=objects_objectLocator_Transmittals.get("Tramsmittals-Attached Support Document Files").replaceAll("docName", data.get("AttachSupportDocumentName"));
-			objects_objectLocator_Transmittals.put("Tramsmittals-Attached Support Document Files", locator);
-			KeyMethods.f_fetchElementDetails(driver, refid, testcasename, workflow, "Tramsmittals-Attached Support Document Files", objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, data.get("AttachSupportDocumentName"));
-		}
-
-	}
-	 */
 	public static void verifyAttachedFiles(WebDriver driver,String testcasename,String refid,String workflow,Hashtable<String,String>data) throws Throwable{
 		if(data.get(Constants_Workflow.Fulcrum_WorkFlow_Data_RESREQ_Condition).equalsIgnoreCase(Constants_Workflow.Fulcrum_WorkFlow_REVIEW) && !data.get("Review Sheet").isEmpty()){
 			ApplicationMethods.switchToLatestDLGframe(driver, testcasename);
@@ -991,13 +756,6 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 			int counter=1;
 			ApplicationMethods.switchToLatestDLGframe(driver, testcasename);
 			
-			/*String locator=objects_objectLocator_Transmittals.get("Tramsmittals-View -Transmittal Files").replaceAll("docName", data.get("AttachDocumentName"));
-			objects_objectLocator_Transmittals.put("Tramsmittals-View -Transmittal Files-Download", locator);
-			KeyMethods.f_performAction(driver,refid,testcasename,workflow,"Tramsmittals-View -Transmittal Files-Download",objects_locatorType_Transmittals,objects_objectType_Transmittals,objects_objectLocator_Transmittals,input);
-			WaitUtil.pause(Constants_TimeOuts.generic_TimeOut);
-			String downloadFile= Constants.DataFileLocation_Transmittal+"DownloadTX_"+data.get("AttachDocumentName");
-			Dialogs.ViewDownloads(driver,"View Downloads - Internet Explorer", downloadFile,refid,testcasename,workflow);*/
-
 			if(data.get("AttachDocumentName").contains(Constants.delimiter_data)){
 				String[] docs=commonMethods.splitString(data.get("AttachDocumentName"), Constants.delimiter_data);
 
@@ -1015,14 +773,7 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 		}		
 		if(!data.get("AttachSupportDocuments").isEmpty()){
 			int counter=1;
-			/*ApplicationMethods.switchToLatestDLGframe(driver, testcasename);
-			String locator=objects_objectLocator_Transmittals.get("Tramsmittals-View -Supporting Document Files").replaceAll("docName", data.get("AttachSupportDocumentName"));
-			objects_objectLocator_Transmittals.put("Tramsmittals-View -Supporting Document Files-Download", locator);
-			KeyMethods.f_performAction(driver, refid, testcasename, workflow, "Tramsmittals-View -Supporting Document Files-Download", objects_locatorType_Transmittals, objects_objectType_Transmittals, objects_objectLocator_Transmittals, input);
-			WaitUtil.pause(Constants_TimeOuts.generic_TimeOut);
-			String downloadFile= Constants.DataFileLocation_Transmittal+"DownloadSupport_"+data.get("AttachSupportDocumentName");
-			Dialogs.ViewDownloads(driver,"View Downloads - Internet Explorer", downloadFile,refid,testcasename,workflow);*/
-
+			
 			if(data.get("AttachSupportDocumentName").contains(Constants.delimiter_data)){
 				String[] docs=commonMethods.splitString(data.get("AttachSupportDocumentName"), Constants.delimiter_data);
 
@@ -1031,6 +782,7 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 					WaitUtil.pause(Constants_TimeOuts.sync_element_load);
 					if (counter%4 == 0){
 						AutoITUtil.robo_pageDown();
+						WaitUtil.pause(Constants_TimeOuts.sync_element_load);
 					}
 					counter=counter+1;
 				}
@@ -1058,13 +810,14 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 		KeyMethods.f_performAction(driver,refid,testcasename,workflow,step_transmittal_files_download,objects_locatorType_Transmittals,objects_objectType_Transmittals,objects_objectLocator_Transmittals,input);
 		WaitUtil.pause(Constants_TimeOuts.generic_TimeOut);
 		if(browserName.equalsIgnoreCase(Constants.browserie)){
+			ExplicitWaitUtil.waitforNumberOfWindows(driver, Constants_TimeOuts.sync_element_load, 2);
+			ExplicitWaitUtil.waitforNumberOfWindows(driver, Constants_TimeOuts.sync_frame_load, 1);			
+			
 			String downloadFile= Constants.DataFileLocation_Transmittal+constantForTxDoc+documentName;
 			//Dialogs.ViewDownloads(driver,"View Downloads - Internet Explorer", downloadFile,refid,testcasename,workflow);
 			Dialogs.ViewDownloads(driver, Constants.pageTitle_MyInbox+Constants.pageTitle_IE, Constants.dialogTitle_Downloads+Constants.pageTitle_IE, downloadFile,refid,testcasename,workflow);
 			objects_objectLocator_Transmittals.put(step_transmittal_files,locator_default);
 			objects_objectLocator_Transmittals.put(step_transmittal_files_download,locator_download_default);
-
-
 
 		}
 		
@@ -1086,6 +839,9 @@ public class Transmittals_EntryPage extends TestSuiteBase{
 		KeyMethods.f_performAction(driver,refid,testcasename,workflow,step_transmittal_files_download,objects_locatorType_Transmittals,objects_objectType_Transmittals,objects_objectLocator_Transmittals,input);
 		WaitUtil.pause(Constants_TimeOuts.generic_TimeOut);
 		if(browserName.equalsIgnoreCase(Constants.browserie)){
+			ExplicitWaitUtil.waitforNumberOfWindows(driver, Constants_TimeOuts.sync_element_load, 2);
+			ExplicitWaitUtil.waitforNumberOfWindows(driver, Constants_TimeOuts.sync_frame_load, 1);	
+			
 			String downloadFile= Constants.DataFileLocation_Transmittal+constantForTxDoc+documentName;
 			Dialogs.ViewDownloads(driver,Constants.pageTitle_MyInbox+Constants.pageTitle_IE,Constants.dialogTitle_Downloads+Constants.pageTitle_IE, downloadFile,refid,testcasename,workflow);
 
